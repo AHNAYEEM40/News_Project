@@ -5,6 +5,8 @@ import About from "../Component/Page/Shared/News/About";
 import Career from "../Component/Page/Shared/News/Career";
 import Register from "../Component/Page/Shared/layoute/Register";
 import Root from "../Component/Page/Shared/layoute/Root";
+import NewsDetails from "../Component/Page/Shared/News/NewsDetails";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router =createBrowserRouter([
@@ -14,7 +16,13 @@ const router =createBrowserRouter([
         children:[
            {
             path:'/',
-            element:<Home></Home>
+            element:<Home></Home>,
+            loader:() => fetch('/news.json')
+             
+           },
+           {
+           path:'/news/:id',
+           element:<PrivateRoute><NewsDetails></NewsDetails></PrivateRoute>
            },
            {
            path:'/login',
